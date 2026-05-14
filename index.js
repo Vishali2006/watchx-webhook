@@ -32,12 +32,11 @@ app.post('/webhook', async (req, res) => {
       const genreCount = {};
 
       shows.forEach(show => {
+        if (!show) return;
         if (show.type) {
-          genreCount[show.type] =
-            (genreCount[show.type] || 0) + 1;
-        }
-      });
-
+          genreCount[show.type] = (genreCount[show.type] || 0) + 1;
+          }
+       });
       console.log("Genre count:", genreCount);
 
       // Find top genre
