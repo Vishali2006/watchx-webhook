@@ -29,8 +29,11 @@ app.post('/webhook', async (req, res) => {
         `https://api.themoviedb.org/3/search/tv?api_key=${TMDB_KEY}&query=${topGenre}`
       );
       
-      const results = tmdb.data.results.slice(0,3)
-        .map(s => s.name).join(', ');
+      const results = tmdb.data.results
+        ?.slice(0,3)
+        ?.map(s => s.name || s.title)
+        ?.filter(Boolean)
+        ?.join(', ') || "No recommendations found";
       
       res.json({
         fulfillmentText: `Based on your taste, you'll love: ${results}!`
