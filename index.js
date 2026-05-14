@@ -70,13 +70,12 @@ app.post('/webhook', async (req, res) => {
         fulfillmentText: `Based on your taste, you'll love: ${results}!`
       });
 
-    } else {
-
+    } if (intent === 'GetUserTaste') {
       return res.json({
-        fulfillmentText: "Intent matched, but not GetUserTaste."
-      });
+        fulfillmentText: `Based on your taste, you'll love: ${results}!`
+  });
 
-    }
+}
 
   } catch (err) {
 
