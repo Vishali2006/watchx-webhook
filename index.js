@@ -40,10 +40,13 @@ app.post('/webhook', async (req, res) => {
       console.log("Genre count:", genreCount);
 
       // Find top genre
-      const favoriteShow = shows.find(show => show && show.title);
-      const searchQuery = favoriteShow
-        ? favoriteShow.title: "popular drama";
-
+      const favoriteShow = shows.find(
+        show =>
+          show &&
+          show.title &&
+          show.is_favourite === true
+      );
+      const searchQuery = favoriteShow?.title || "Hidden Love";
       console.log("Search query:", searchQuery);
 
       // TMDB API request
