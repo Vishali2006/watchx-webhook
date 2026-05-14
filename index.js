@@ -44,7 +44,7 @@ app.post('/webhook', async (req, res) => {
       const searchQuery = favoriteShow
         ? favoriteShow.title: "popular drama";
 
-      console.log("Top genre:", topGenre);
+      console.log("Search query:", searchQuery);
 
       // TMDB API request
       const tmdb = await axios.get(
