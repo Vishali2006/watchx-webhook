@@ -10,7 +10,7 @@ app.post('/webhook', async (req, res) => {
   try {
     const intent = req.body.queryResult.intent.displayName;
     
-    if (intent === 'GetRecommendation') {
+    if (intent === 'GetUserTaste') {
       const snapshot = await axios.get(`${FIREBASE_URL}/shows.json`);
       const shows = Object.values(snapshot.data);
       
