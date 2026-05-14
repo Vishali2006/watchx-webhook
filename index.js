@@ -40,14 +40,15 @@ app.post('/webhook', async (req, res) => {
       console.log("Genre count:", genreCount);
 
       // Find top genre
-      const topGenre = Object.keys(genreCount)
-        .sort((a, b) => genreCount[b] - genreCount[a])[0];
+      const favoriteShow = shows.find(show => show && show.title);
+      const searchQuery = favoriteShow
+        ? favoriteShow.title: "popular drama";
 
       console.log("Top genre:", topGenre);
 
       // TMDB API request
       const tmdb = await axios.get(
-        `https://api.themoviedb.org/3/search/tv?api_key=${TMDB_KEY}&query=${topGenre}`
+        `https://api.themoviedb.org/3/search/tv?api_key=${TMDB_KEY}&query=${searchQuery}`
       );
 
       console.log("TMDB success");
