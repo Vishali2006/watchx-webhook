@@ -36,4 +36,5 @@ app.post('/webhook', async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log('Webhook running!'));
+app.listen(process.env.PORT || 3000, () => console.log('Webhook running!'));
+
