@@ -12,7 +12,8 @@ app.post('/webhook', async (req, res) => {
     
     if (intent === 'GetUserTaste') {
       const snapshot = await axios.get(`${FIREBASE_URL}/shows.json`);
-      const shows = Object.values(snapshot.data);
+      console.log(snapshot.data);
+      const shows = snapshot.data ? Object.values(snapshot.data) : [];
       
       const genreCount = {};
       shows.forEach(show => {
